@@ -9,18 +9,18 @@ module.exports = {
     requireConfigFile: false,
     babelOptions: {
       plugins: [
-        ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
-      ],
-    },
+        ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }]
+      ]
+    }
   },
   plugins: ['ember'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
-    'plugin:prettier/recommended',
+    'plugin:prettier/recommended'
   ],
   env: {
-    browser: true,
+    browser: true
   },
   rules: {},
   overrides: [
@@ -36,21 +36,21 @@ module.exports = {
         './blueprints/*/index.js',
         './config/**/*.js',
         './lib/*/index.js',
-        './server/**/*.js',
+        './server/**/*.js'
       ],
       parserOptions: {
-        sourceType: 'script',
+        sourceType: 'script'
       },
       env: {
         browser: false,
-        node: true,
+        node: true
       },
-      extends: ['plugin:n/recommended'],
+      extends: ['plugin:n/recommended']
     },
     {
       // test files
       files: ['tests/**/*-test.{js,ts}'],
-      extends: ['plugin:qunit/recommended'],
-    },
-  ],
+      extends: ['plugin:qunit/recommended']
+    }
+  ]
 };
