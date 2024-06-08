@@ -4,7 +4,24 @@
   <ul>
     {{#each @model as |song|}}
       <li class="leading-loose">
-        {{song.title}} <span class="float-right">rating: {{song.rating}}</span>
+        {{song.title}}
+        <span class="float-right">
+          <StarRating
+            @maxRating="5"
+            @rating={{song.rating}}
+            @onUpdate={{set song "rating"}}
+          />
+
+<!--          <StarRating-->
+<!--            @maxRating="5"-->
+<!--            @rating={{song.rating}} -->
+<!--            as |stars|-->
+<!--          >-->
+<!--            {{#each stars as |star|}}-->
+<!--              <span class="glyphicon {{if star.full 'glyphicon-star' 'glyphicon-star-empty'}}"></span>-->
+<!--            {{/each}}-->
+<!--          </StarRating>-->
+        </span>
       </li>
     {{/each}}
   </ul>

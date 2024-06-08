@@ -1,0 +1,12 @@
+{{#if (has-block)}}
+  {{yield this.stars}}
+{{else}}
+  {{#each this.stars as |star|}}
+    <FaIcon
+      @icon="star"
+      @prefix={{if star.full "fas" "far"}}
+      {{on 'click' (fn @onUpdate star.rating)}}
+    />
+  {{/each}}
+{{/if}}
+
