@@ -1,9 +1,8 @@
 import Route from '@ember/routing/route';
 
 export default class BandsBandSongsRoute extends Route {
-  model() {
-    let band = this.modelFor('bands.band');
-
-    return band.songs;
+  resetController(_controller, _isExiting, _transition) {
+    _controller.title = '';
+    _controller.showAddSong = true;
   }
 }
