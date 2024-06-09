@@ -2,7 +2,6 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
-import { Song } from '../../../models/song';
 
 export default class BandsBandSongsController extends Controller {
   @service catalog;
@@ -20,14 +19,26 @@ export default class BandsBandSongsController extends Controller {
   }
 
   @action
-  saveSong() {
-    let song = new Song({
-      title: this.title,
-      rating: 0,
-      band: this.model
-    });
+  async updateRating(song, rating) {
+    song.rating = rating;
+    this.catalog.update('song', song, { rating });
+  }
 
-    this.catalog.add('song', song);
+  @action
+  async saveSong() {
+    let song = await this.catalog.create(
+      'song',
+      { title: this.title },
+      {
+        band: {
+          data: {
+            id: this.model.id,
+            type: 'bands'
+          }
+        }
+      }
+    );
+    console.log(song);
     this.model.songs = [...this.model.songs, song];
     this.#resetForm();
   }
